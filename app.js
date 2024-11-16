@@ -1,8 +1,14 @@
 document.getElementById("searchButton").addEventListener("click", function () {
+    // Use the Fetch API to retrieve superhero data
     fetch("superheroes.php")
-        .then(response => response.text())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.text(); // Parse as text since the PHP file returns HTML
+        })
         .then(data => {
-            // Show the list of superheroes in an alert
+            // Display the superhero list in an alert box
             alert(data);
         })
         .catch(error => {
