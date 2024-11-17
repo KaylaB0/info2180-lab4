@@ -1,20 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Superhero Search</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AVENGERS CHARACTER SEARCH</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Superhero Search</h1>
-        <div class="search-section">
-            <input type="text" id="searchField" placeholder="Search for a superhero...">
-            <button id="searchBtn">Search</button>
-        </div>
-        <div id="result" class="result-section"></div>
+
+  <div class="header">
+    <h1>AVENGERS CHARACTER SEARCH</h1>
+  </div>
+
+  <div class="main-content">
+    <div class="search-section">
+      <label for="search-input">Search by Full Name or Alias</label>
+      <div class="search-bar">
+        <input type="text" id="search-input" placeholder="e.g. Captain America or Steve Rogers">
+        <button type="button" id="search-btn">Search</button>
+      </div>
     </div>
-    <script src="app.js"></script>
+
+    <div id="result">
+      <ul id="character-list"></ul>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
 </body>
 </html>
