@@ -63,10 +63,31 @@ $superheroes = [
   ], 
 ];
 
-?>
+// Get the query parameter from the URL
+$query = isset($_GET['query']) ? strtolower(trim($_GET['query'])) : '';
 
-<ul>
-<?php foreach ($superheroes as $superhero): ?>
-  <li><?= $superhero['alias']; ?></li>
-<?php endforeach; ?>
-</ul>
+if (empty($query)) {
+    // If no query, return a simplified list of superhero aliases
+    $namesOnly = array_map(function($hero) {
+        return $hero['alias'];
+    }, $superheroes);
+    echo json_encode($namesOnly);
+    exit;
+}
+
+// Function to search for a superhero by alias or name (case-insensitive)
+function searchSuperheroes($query, $superheroes) {
+    $result = [];
+    foreach ($superheroes as $hero) {
+        if (stripos($hero['alias'], $query) !== false || stripos($hero['name'], $query) !== false) {
+            $result[] = $hero;
+        }
+    }
+    return $result;
+}
+
+// Search for superheroes based on the query
+$matchingHeroes = searchSuperheroes($query, $superheroes);
+
+echo json_encode($matchingHeroes);
+?>
